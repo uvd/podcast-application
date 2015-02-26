@@ -1,0 +1,18 @@
+<h2 class="page-header">Search Results</h2>
+
+<div id="search-error-message" ng-if="searchCtrl.results.length === 0">
+    No search results
+</div>
+
+<ul class="media-list">
+    <li class="media" ng-repeat="podcast in searchCtrl.results">
+        <a class="pull-left" href="#">
+            <img class="media-object" ng-src="{{ podcast.artworkUrl100 }}">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">{{ podcast.collectionName }}</h4>
+            <a ng-href="{{ podcast.feedUrl }}">{{ podcast.feedUrl }}</a>
+            <a class="btn btn-default btn-block" ui-sref="podcast({ feed: podcast.feedUrl })">View episodes</a>
+        </div>
+    </li>
+</ul>

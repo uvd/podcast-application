@@ -71,7 +71,7 @@ module.exports = function (grunt) {
             options: {
                 port: 9000,
                 // Change this to '0.0.0.0' to access the server from outside.
-                hostname: 'localhost',
+                hostname: '0.0.0.0',
                 livereload: 35729
             },
             livereload: {
@@ -431,6 +431,34 @@ module.exports = function (grunt) {
             }
         },
 
+        ngtemplates: {
+            myapp: {
+                options: {
+                    base: 'views',        // $templateCache ID will be relative to this folder
+                    module: 'uvdAngularPodcastTutorialApp',               // (Optional) The module the templates will be added to
+                    htmlmin: {
+                        collapseBooleanAttributes: true,
+                        collapseWhitespace: true,
+                        removeAttributeQuotes: true,
+                        removeComments: true, // Only if you don't use comment directives!
+                        removeEmptyAttributes: true,
+                        removeRedundantAttributes: true,
+                        removeScriptTypeAttributes: true,
+                        removeStyleLinkTypeAttributes: true
+                    }
+                },
+                cwd: '<%= yeoman.app %>',
+                src: [
+                    'views/*.html',
+                    'views/**/*.html',
+                    'views/**/**/*.html',
+                    'template/**/*.html'
+
+                ],
+                dest: '.tmp/scripts/templates.js'
+            }
+        },
+
         // Run some tasks in parallel to speed up the build process
         concurrent: {
             server: [
@@ -450,7 +478,7 @@ module.exports = function (grunt) {
         karma: {
             unit: {
                 configFile: 'test/karma.conf.js',
-                singleRun: true
+                singleRun: false
             }
         },
 
@@ -482,11 +510,22 @@ module.exports = function (grunt) {
         grunt.task.run(['serve:' + target]);
     });
 
+
+    grunt.registerTask('e2e', [
+        'clean:server',
+        'wiredep',
+        'concurrent:server',
+        'autoprefixer',
+        'connect:e2e',
+        'shell:protractor'
+    ]);
+
     grunt.registerTask('test', [
         'clean:server',
         'wiredep',
         'concurrent:test',
         'autoprefixer',
+        'ngtemplates',
         'connect:test',
         'karma'
     ]);
