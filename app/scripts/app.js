@@ -10,5 +10,6 @@
  */
 angular
   .module('uvdAngularPodcastTutorialApp', [
-        'ui.router'
+        'ui.router',
+        'restangular'
     ]);
