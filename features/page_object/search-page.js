@@ -1,0 +1,36 @@
+var SearchPage = {
+
+    form: $('input[ng-model="term"]'),
+
+    searchResults: by.repeater('podcast in searchCtrl.results'),
+
+    errorMessage: $('#search-error-message'),
+
+    visit: function () {
+        return browser.get('#/search');
+    },
+
+    search: function (term) {
+        return this.form.sendKeys(term + protractor.Key.ENTER);
+    },
+
+    getSearchResults: function () {
+        return getRepeaterColumns(this.searchResults, ['collectionName', 'feedUrl']);
+    },
+
+    countSearchResults: function () {
+        return getRepeaterCount(this.searchResults);
+    },
+
+    getAlertText: function () {
+        return this.errorMessage.getText();
+    },
+
+    hasAlert: function () {
+        return this.errorMessage.isPresent();
+    }
+
+};
+
+
+module.exports = SearchPage;

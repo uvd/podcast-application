@@ -1,7 +1,7 @@
 'use strict';
 
 
-function ItunesApi(Restangular) {
+function ItunesApi(Restangular, ITUNES_BASE_URL) {
 
     /**
      * If search results, only return the results.
@@ -21,7 +21,7 @@ function ItunesApi(Restangular) {
     }
 
     return Restangular.withConfig(function (RestangularConfigurer) {
-        RestangularConfigurer.setBaseUrl('https://itunes.apple.com/');
+        RestangularConfigurer.setBaseUrl(ITUNES_BASE_URL);
         RestangularConfigurer.setJsonp(true);
         RestangularConfigurer.setDefaultRequestParams('jsonp', { callback: 'JSON_CALLBACK', media: 'podcast' });
         RestangularConfigurer.setResponseInterceptor(searchResponseInterceptor);

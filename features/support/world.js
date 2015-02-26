@@ -38,11 +38,11 @@ var World = function World(callback) {
         return Q.all(columns.map(function (e) {
             return getRepeaterColumn(results, e);
         }))
-            .then(function (resolvedColumns) {
-                return resolvedColumns.map(function (e, i) {
-                    return _.pluck(resolvedColumns, i);
-                });
+        .then(function (resolvedColumns) {
+            return resolvedColumns.map(function (e, i) {
+                return _.pluck(resolvedColumns, i);
             });
+        });
     };
 
     /**

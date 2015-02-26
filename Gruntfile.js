@@ -10,6 +10,7 @@
 var path = require('path'),
     seleniumPath = path.resolve('./node_modules/protractor/selenium');
 
+
 module.exports = function (grunt) {
 
     // Load grunt tasks automatically
@@ -459,6 +460,25 @@ module.exports = function (grunt) {
             }
         },
 
+        ngconstant: {
+            options: {
+                space: '  ',
+                name: 'config',
+                dest: '.tmp/scripts/config.js',
+                wrap: true
+            },
+            serve: {
+                constants: {
+                    ITUNES_BASE_URL: 'https://itunes.apple.com/'
+                }
+            },
+            e2e: {
+                constants: {
+                    ITUNES_BASE_URL: 'http://localhost:3000/'
+                }
+            }
+        },
+
         // Run some tasks in parallel to speed up the build process
         concurrent: {
             server: [
@@ -501,6 +521,7 @@ module.exports = function (grunt) {
             'concurrent:server',
             'autoprefixer:server',
             'ngtemplates',
+            'ngconstant:serve',
             'connect:livereload',
             'watch'
         ]);
@@ -514,6 +535,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('e2e', [
         'clean:server',
+        'ngconstant:e2e',
         'wiredep',
         'concurrent:server',
         'autoprefixer',
@@ -524,6 +546,7 @@ module.exports = function (grunt) {
     grunt.registerTask('test', [
         'clean:server',
         'wiredep',
+        'ngconstant:serve',
         'concurrent:test',
         'autoprefixer',
         'ngtemplates',
