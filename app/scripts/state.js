@@ -9,8 +9,11 @@
 function State ($stateProvider, $urlRouterProvider) {
 
     $stateProvider.state('search', {
-        url: '/search',
-        templateUrl: 'views/search.html'
+        url: '/search?term',
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl',
+        controllerAs: 'searchCtrl',
+        resolve: SearchCtrl.resolve
     });
 
     $urlRouterProvider.otherwise('/search');
