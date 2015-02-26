@@ -500,6 +500,7 @@ module.exports = function (grunt) {
             'wiredep',
             'concurrent:server',
             'autoprefixer:server',
+            'ngtemplates',
             'connect:livereload',
             'watch'
         ]);
