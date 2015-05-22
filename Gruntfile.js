@@ -469,12 +469,14 @@ module.exports = function (grunt) {
             },
             serve: {
                 constants: {
-                    ITUNES_BASE_URL: 'https://itunes.apple.com/'
+                    ITUNES_BASE_URL: 'https://itunes.apple.com/',
+                    GOOGLE_FEED_BASE_URL: '//ajax.googleapis.com/ajax/services/feed/'
                 }
             },
             e2e: {
                 constants: {
-                    ITUNES_BASE_URL: 'http://localhost:3000/'
+                    ITUNES_BASE_URL: 'http://localhost:3000/',
+                    GOOGLE_FEED_BASE_URL: 'http://localhost:3000/'
                 }
             }
         },

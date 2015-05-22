@@ -16,6 +16,14 @@ function State ($stateProvider, $urlRouterProvider) {
         resolve: SearchCtrl.resolve
     });
 
+    $stateProvider.state('podcast', {
+        url: '/podcast?feed',
+        templateUrl: 'views/podcast.html',
+        controller: 'EpisodesCtrl',
+        controllerAs: 'episodesCtrl',
+        resolve: EpisodesCtrl.resolve
+    });
+
     $urlRouterProvider.otherwise('/search');
 
 }

@@ -15,7 +15,8 @@ module.exports = function (config) {
 
         preprocessors: {
             'app/views/**/*.html': ['ng-html2js'],
-            'app/template/**/*.html': ['ng-html2js']
+            'app/template/**/*.html': ['ng-html2js'],
+            './test/spec/fixtures/*.json': ['json_fixtures']
         },
 
         // testing framework to use (jasmine/mocha/qunit/...)
@@ -28,9 +29,12 @@ module.exports = function (config) {
             'bower_components/ui-router/release/angular-ui-router.js',
             'bower_components/lodash/dist/lodash.compat.js',
             'bower_components/restangular/dist/restangular.js',
+            'bower_components/x2js/xml2json.js',
+            'bower_components/angular-xml/angular-xml.js',
             '.tmp/scripts/config.js',
             'app/scripts/**/*.js',
             '.tmp/scripts/templates.js',
+            'test/spec/fixtures/*.json',
             'test/mock/**/*.js',
             'test/spec/**/*.js'
         ],
@@ -58,8 +62,13 @@ module.exports = function (config) {
             'karma-phantomjs-launcher',
             'karma-chrome-launcher',
             'karma-mocha',
-            'karma-sinon-chai'
+            'karma-sinon-chai',
+            'karma-json-fixtures-preprocessor'
         ],
+
+        jsonFixturesPreprocessor: {
+            variableName: 'jsonFixtures'
+        },
 
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit

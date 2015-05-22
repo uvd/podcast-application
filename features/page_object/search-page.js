@@ -28,6 +28,13 @@ var SearchPage = {
 
     hasAlert: function () {
         return this.errorMessage.isPresent();
+    },
+
+    viewEpisodes: function (podcastName) {
+        return element(by.cssContainingText('h4.media-heading', podcastName))
+            .element(by.xpath('..'))
+            .element(by.cssContainingText('a[ui-sref="podcast({ feed: podcast.feedUrl })"]', 'View episodes'))
+            .click();
     }
 
 };

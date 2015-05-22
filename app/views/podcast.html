@@ -1,0 +1,24 @@
+<div id="search-error-message" ng-if="episodesCtrl.episodes.length === 0">
+    No search results
+</div>
+
+
+<table class="table table-striped">
+
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Duration</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="episode in episodesCtrl.episodes">
+        <td>{{ episode.title }}</td>
+        <td>{{ episode.date }}</td>
+        <td>{{ episode.duration }}</td>
+    </tr>
+    </tbody>
+
+</table>
