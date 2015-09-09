@@ -20,9 +20,7 @@ var World = function World(callback) {
     global.getRepeaterColumn = function getRepeaterColumn(results, column) {
         return element.all(results.column(column)).then(function (c) {
             return Q.all(c.map(function (e) {
-                return e.getText().then(function (text) {
-                    return text;
-                });
+                return e.getText();
             }));
         });
     };
